@@ -25,7 +25,7 @@ public class OrdersController {
         return "orders-list";
     }*/
     @RequestMapping("/findAll")
-    public String findAllByPage(@RequestParam(required = false,defaultValue = "1") Integer pageNum, @RequestParam(required = false,defaultValue = "3") Integer pageSize, Model model) throws Exception {
+    public String findAllByPage(@RequestParam(required = false,defaultValue = "1") Integer pageNum, @RequestParam(required = false,defaultValue = "5") Integer pageSize, Model model) throws Exception {
         List<Orders> ordersList = ordersService.findAllByPage(pageNum,pageSize);
         PageInfo page=new PageInfo(ordersList);
 

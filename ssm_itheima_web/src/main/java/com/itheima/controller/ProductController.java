@@ -17,7 +17,7 @@ public class ProductController {
 @Autowired
     private ProductService productService;
 @RequestMapping("/findAll")
-public String findAll(@RequestParam(required = false,defaultValue = "1") Integer pageNum, @RequestParam(required = false,defaultValue = "1") Integer pageSize, Model model) throws Exception {
+public String findAll(@RequestParam(required = false,defaultValue = "1") Integer pageNum, @RequestParam(required = false,defaultValue = "5") Integer pageSize, Model model) throws Exception {
     List<Product> productList = productService.findAll(pageNum,pageSize);
     //物理分页
     PageInfo page=new PageInfo(productList);

@@ -293,9 +293,9 @@
 							<div class="form-group form-inline">
 								总共${page.pages} 页，共${page.total}条数据。 每页
 								<select class="form-control" id="changePageSize" onchange="changePageSize();">
-								<c:forEach begin="1" end="${page.total}" var="i">
-									<option  ${page.pageSize==i?"selected":""}>${i}</option>
-								</c:forEach>
+									<c:forEach begin="1" end="5" var="i">
+										<option  ${page.pageSize==i?"selected":""}>${i}</option>
+									</c:forEach>
 								</select> 条
 							</div>
 						</div>
