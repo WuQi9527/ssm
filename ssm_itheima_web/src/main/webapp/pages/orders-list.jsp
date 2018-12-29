@@ -243,7 +243,7 @@
 								<tbody>
 
 
-									<c:forEach items="${ordersList}" var="orders">
+									<c:forEach items="${page.list}" var="orders">
 
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
@@ -286,33 +286,25 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共2 页，共14 条数据。 每页
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select> 条
+                            总共${page.pages} 页，共${page.total} 页，共14 条数据。 每页
+							<select class="form-control" id="changePageSize" onchange="changePageSize();">
+								<c:forEach begin="1" end="5" var="i">
+									<option  ${page.pageSize==i?"selected":""}>${i}</option>
+								</c:forEach>
+							</select> 条
                         </div>
                     </div>
 
                     <div class="box-tools pull-right">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">首页</a>
-                            </li>
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">尾页</a>
-                            </li>
-                        </ul>
+						<ul class="pagination">
+							<li><a href="${pageContext.request.contextPath}/product/findAll?pageNum=1&pageSize=${page.pageSize}" aria-label="Previous">首页</a></li>
+							<li><a href="${pageContext.request.contextPath}/product/findAll?pageNum=${page.pageNum-1}&pageSize=${page.pageSize}">上一页</a></li>
+							<c:forEach begin="1" end="${page.pages}" var="i">
+								<li><a href="${pageContext.request.contextPath}/product/findAll?pageNum=${i}&pageSize=${page.pageSize}">${i}</a></li>
+							</c:forEach>
+							<li><a href="${pageContext.request.contextPath}/product/findAll?pageNum=${page.pageNum+1}&pageSize=${page.pageSize}">下一页</a></li>
+							<li><a href="${pageContext.request.contextPath}/product/findAll?pageNum=${page.pages}&pageSize=${page.pageSize}" aria-label="Next">尾页</a></li>
+						</ul>
                     </div>
 
                 </div>
